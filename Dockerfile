@@ -1,5 +1,5 @@
 FROM scratch
 
-COPY ./compiled/echo /usr/bin/echo
+COPY ./compiled/say /usr/bin/say
 
-CMD ["/usr/bin/echo"]
+CMD ["/usr/bin/say"]
