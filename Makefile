@@ -17,7 +17,7 @@ github_release: build_binaries
 		v2
 
 download_release:
-	curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/v1/say -o /usr/bin/say
-	chmod +x /usr/bin/say
-	curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/v1/say -o /usr/bin/explore
-	chmod +x /usr/bin/explore
+	sudo curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/v1/say -o /usr/bin/say
+	sudo chmod +x /usr/bin/say
+	sudo curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/v1/explore -o /usr/bin/explore
+	sudo chmod +x /usr/bin/explore
