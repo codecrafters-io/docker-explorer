@@ -14,7 +14,7 @@ github_release: build_binaries
 		-a "compiled/say#say" \
 		-a "compiled/explore#explore" \
 		-m "Includes a downloadable 'say' binary" \
-		v1
+		v2
 
 download_release:
 	curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/v1/say -o /usr/bin/say
