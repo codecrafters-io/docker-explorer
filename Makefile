@@ -1,3 +1,8 @@
+tag := $(shell git describe --tags)
+
+assert_tag:
+	echo $(tag) | grep -qE ^v[0-9]+$
+
 build_binaries:
 	go build -o compiled/docker-explorer docker-explorer.go
 
@@ -9,12 +14,12 @@ execute: build_binaries
 	./compiled/docker-explorer ls .
 	./compiled/docker-explorer mypid
 
-github_release: build_binaries
+github_release: build_binaries assert_tag
 	hub release create \
 		-a "compiled/docker-explorer#docker-explorer" \
 		-m "Includes a 'docker-explorer' binary" \
-		v4
+		$(tag)
 
-download_release:
-	sudo curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/v4/docker-explorer -o /usr/bin/docker-explorer
+download_release: assert_tag
+	sudo curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/$(tag)/docker-explorer -o /usr/bin/docker-explorer
 	sudo chmod +x /usr/bin/docker-explorer
