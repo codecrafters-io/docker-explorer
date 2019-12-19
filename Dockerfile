@@ -1,4 +1,4 @@
-FROM scratch
+FROM alpine
 
 COPY ./compiled/say /usr/bin/say
 COPY ./compiled/explore /usr/bin/explore
