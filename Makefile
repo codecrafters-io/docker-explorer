@@ -15,6 +15,7 @@ execute: build_binaries
 	./compiled/docker-explorer mypid
 
 github_release: build_binaries assert_tag
+	git push --tags origin master
 	hub release create \
 		-a "compiled/docker-explorer#docker-explorer" \
 		-m "Includes a 'docker-explorer' binary" \
