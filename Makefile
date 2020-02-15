@@ -4,7 +4,7 @@ assert_tag:
 	echo $(tag) | grep -qE ^v[0-9]+$
 
 build_binaries:
-	go build -o compiled/docker-explorer docker-explorer.go
+	go build -o compiled/docker-explorer main.go
 
 build_docker: build_binaries
 	docker build -t docker-challenge-1 .
