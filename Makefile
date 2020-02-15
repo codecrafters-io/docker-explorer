@@ -1,26 +1,9 @@
-tag := $(shell git describe --tags)
+current_version_number := $(shell git tag --list "v*" | sort -V | tail -n 1 | cut -c 2-)
+next_version_number := $(shell echo $$(($(current_version_number)+1)))
 
-assert_tag:
-	echo $(tag) | grep -qE ^v[0-9]+$
+release:
+	git tag v$(next_version_number)
+	git push origin master v$(next_version_number)
 
-build_binaries:
-	go build -o compiled/docker-explorer main.go
-
-build_docker: build_binaries
-	docker build -t docker-challenge-1 .
-
-execute: build_binaries
-	./compiled/docker-explorer echo hey
-	./compiled/docker-explorer ls .
-	./compiled/docker-explorer mypid
-
-github_release: build_binaries assert_tag
-	git push --tags origin master
-	hub release create \
-		-a "compiled/docker-explorer#docker-explorer" \
-		-m "Includes a 'docker-explorer' binary" \
-		$(tag)
-
-download_release: assert_tag
-	sudo curl -L https://github.com/codecrafters-io/docker-challenge-1/releases/download/$(tag)/docker-explorer -o /usr/bin/docker-explorer
-	sudo chmod +x /usr/bin/docker-explorer
+build:
+	go build -o dist/main.out
