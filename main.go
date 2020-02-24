@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -14,6 +15,7 @@ Commands:
   echo <something> : prints <something>
   mypid            : prints the process's PID
   ls <dir>         : lists files in <dir>
+  exit <exit_code> : exit with <exit_code>
 
 Examples:
   docker-explorer echo hey
@@ -31,7 +33,22 @@ func main() {
 		commandMyPID()
 	case "ls":
 		commandLs()
+	case "exit":
+		commandExit()
+	default:
+		fmt.Println(help)
+		os.Exit(1)
 	}
+}
+
+func commandExit() {
+	checkArgCountAtleast(2)
+	exitCode, err := strconv.Atoi(os.Args[2])
+	if err != nil {
+		fmt.Printf("Unable to parse exit code %v\n", exitCode)
+		os.Exit(1)
+	}
+	os.Exit(exitCode)
 }
 
 func commandEcho() {
