@@ -1,5 +1,5 @@
 FROM alpine
 
-COPY ./compiled/docker-explorer /usr/bin/docker-explorer
+COPY ./compiled/docker-explorer /usr/local/bin/docker-explorer
 
-CMD ["/usr/bin/docker-explorer"]
+CMD ["/usr/local/bin/docker-explorer"]
