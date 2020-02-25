@@ -8,14 +8,14 @@ Docker challenge.
 If you're on Mac: 
 
 ```
-sudo curl -Lo /usr/local/bin/docker-explorer https://github.com/codecrafters-io/docker-explorer/releases/download/v12/v12_darwin_amd64
+sudo curl -Lo /usr/local/bin/docker-explorer https://github.com/codecrafters-io/docker-explorer/releases/download/v14/v14_darwin_amd64
 sudo chmod +x /usr/local/bin/docker-explorer
 ```
 
 If you're on linux: 
 
 ```
-sudo curl -Lo /usr/local/bin/docker-explorer https://github.com/codecrafters-io/docker-explorer/releases/download/v12/v12_linux_amd64
+sudo curl -Lo /usr/local/bin/docker-explorer https://github.com/codecrafters-io/docker-explorer/releases/download/v14/v14_linux_amd64
 sudo chmod +x /usr/local/bin/docker-explorer
 ```
 
