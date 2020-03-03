@@ -1,6 +1,6 @@
 This is a test program for the Docker challenge.
 
-You'll need to install it into `/usr/bin/docker-explorer` to use it for the
+You'll need to install it into `/usr/local/bin/docker-explorer` to use it for the
 Docker challenge.
 
 # Installation
