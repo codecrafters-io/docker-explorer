@@ -7,3 +7,6 @@ release:
 
 build:
 	go build -o dist/main.out
+
+install: build
+	cp dist/main.out /usr/local/bin/docker-explorer
