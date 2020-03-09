@@ -97,6 +97,7 @@ func commandTouch() {
 		fmt.Printf("Error: %v", err)
 		os.Exit(1)
 	}
+	fmt.Printf("Touched file %s\n", os.Args[2])
 	file.Close()
 }
 
