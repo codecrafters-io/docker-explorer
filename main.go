@@ -12,11 +12,12 @@ var help = `
 Usage: docker-explorer COMMAND [ARGS]
 
 Commands:
-  echo <something> : prints <something>
-  mypid            : prints the process's PID
-  ls <dir>         : lists files in <dir>
-  touch <path>     : create a new file at <path>
-  exit <exit_code> : exit with <exit_code>
+  echo <something>        : prints <something> to stdour
+  echo_stderr <something> : prints <something> to stderr
+  mypid                   : prints the process's PID
+  ls <dir>                : lists files in <dir>
+  touch <path>            : create a new file at <path>
+  exit <exit_code>        : exit with <exit_code>
 
 Examples:
   docker-explorer echo hey
@@ -30,6 +31,8 @@ func main() {
 	switch command {
 	case "echo":
 		commandEcho()
+	case "echo_stderr":
+		commandEchoStderr()
 	case "mypid":
 		commandMyPID()
 	case "ls":
@@ -57,6 +60,11 @@ func commandExit() {
 func commandEcho() {
 	checkArgCountAtleast(2)
 	fmt.Println(strings.Join(os.Args[2:], " "))
+}
+
+func commandEchoStderr() {
+	checkArgCountAtleast(2)
+	fmt.Fprintln(os.Stderr, strings.Join(os.Args[2:], " "))
 }
 
 func commandMyPID() {
