@@ -15,6 +15,7 @@ Commands:
   echo <something> : prints <something>
   mypid            : prints the process's PID
   ls <dir>         : lists files in <dir>
+  touch <path>     : create a new file at <path>
   exit <exit_code> : exit with <exit_code>
 
 Examples:
@@ -33,6 +34,8 @@ func main() {
 		commandMyPID()
 	case "ls":
 		commandLs()
+	case "touch":
+		commandTouch()
 	case "exit":
 		commandExit()
 	default:
@@ -77,6 +80,16 @@ func commandLs() {
 	for _, file := range files {
 		fmt.Println(file.Name())
 	}
+}
+
+func commandTouch() {
+	checkArgCountAtleast(2)
+	file, err := os.Create(os.Args[2])
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+		os.Exit(1)
+	}
+	file.Close()
 }
 
 func checkArgCountAtleast(expectedCount int) {
