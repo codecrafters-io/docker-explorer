@@ -76,11 +76,11 @@ func commandLs() {
 	checkArgCountAtleast(2)
 	files, err := ioutil.ReadDir(os.Args[2])
 	if err != nil {
-		fmt.Printf("Error: %v", err)
-		switch err.(type) {
-		case *os.PathError:
+		if os.IsNotExist(err) {
+			fmt.Printf("No such file or directory\n")
 			os.Exit(2) // Matches what 'ls' does
-		default:
+		} else {
+			fmt.Printf("Error: %v", err)
 			os.Exit(1)
 		}
 	}
